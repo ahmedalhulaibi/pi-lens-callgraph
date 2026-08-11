@@ -395,4 +395,181 @@ describe("distinct directional branches", () => {
 			branches: distinctBranches({ incoming, outgoing }),
 		}).toMatchSnapshot();
 	});
+	it.each([
+		{
+			label:
+				"incoming branches; catches eager branch enumeration, eager file reads, zero-based offsets, and inclusive-range off-by-one errors",
+			input: {
+				root: node("root", 0, "incoming"),
+				direction: "incoming" as const,
+				directionBit: 1 as const,
+				nodes: [
+					node("root", 0, "incoming"),
+					node("caller-a", 1, "incoming"),
+					node("caller-b", 2, "incoming"),
+				],
+				edges: [
+					{ from: "caller-a", to: "root", direction: 1 as const },
+					{ from: "caller-b", to: "root", direction: 1 as const },
+				],
+				boundaries: [],
+				truncated: false,
+			},
+		},
+		{
+			label:
+				"outgoing branches; catches eager branch enumeration, reversed node order, and reads issued before a node is consumed",
+			input: {
+				root: node("root", 0, "outgoing"),
+				direction: "outgoing" as const,
+				directionBit: 2 as const,
+				nodes: [
+					node("root", 0, "outgoing"),
+					node("callee-a", 1, "outgoing"),
+					node("callee-b", 2, "outgoing"),
+				],
+				edges: [
+					{ from: "root", to: "callee-a", direction: 2 as const },
+					{ from: "root", to: "callee-b", direction: 2 as const },
+				],
+				boundaries: [],
+				truncated: false,
+			},
+		},
+	] as const)("$label", async ({ label, input }) => {
+		const { expandBranches } = await import(
+			"../scripts/expand-branches.fabric"
+		);
+		const reads: Array<{ path: string; offset: number; limit: number }> = [];
+		const branchEnumerations: number[] = [];
+		const boundaries = new Proxy(input.boundaries, {
+			get(target, property, receiver) {
+				if (property !== "filter")
+					return Reflect.get(target, property, receiver);
+				return (callback: Parameters<typeof target.filter>[0]) => {
+					branchEnumerations.push(branchEnumerations.length + 1);
+					return target.filter(callback);
+				};
+			},
+		});
+		const read = vi.fn(
+			async (range: { path: string; offset: number; limit: number }) => {
+				reads.push(range);
+				return {
+					text: `${range.path}:${range.offset}-${range.offset + range.limit - 1}`,
+				};
+			},
+		);
+
+		const iterator = expandBranches({ ...input, boundaries }, { read })[
+			Symbol.asyncIterator
+		]();
+		const beforeBranch = {
+			reads: [...reads],
+			branchEnumerations: [...branchEnumerations],
+		};
+		const first = await iterator.next();
+		const afterBranch = {
+			reads: [...reads],
+			branchEnumerations: [...branchEnumerations],
+		};
+		if (first.done) throw new Error("expected a first expanded branch");
+
+		const expandedNodes = [];
+		const readsAfterEachNode = [];
+		for (const expandedNode of first.value.nodes) {
+			expandedNodes.push({
+				key: expandedNode.key,
+				name: expandedNode.name,
+				path: expandedNode.path,
+				ranges: expandedNode.ranges,
+				content: await expandedNode.read(),
+			});
+			readsAfterEachNode.push({
+				node: expandedNode.key,
+				reads: [...reads],
+				branchEnumerations: [...branchEnumerations],
+			});
+		}
+		const afterReads = {
+			reads: [...reads],
+			branchEnumerations: [...branchEnumerations],
+		};
+		const second = await iterator.next();
+		if (second.done) throw new Error("expected a second expanded branch");
+
+		expect({
+			label,
+			beforeBranch,
+			afterBranch,
+			branch: {
+				direction: first.value.direction,
+				nodes: expandedNodes,
+			},
+			readsAfterEachNode,
+			afterReads,
+			afterSecondBranch: {
+				reads: [...reads],
+				branchEnumerations: [...branchEnumerations],
+				branch: {
+					direction: second.value.direction,
+					nodes: second.value.nodes.map(({ key, name, path, ranges }) => ({
+						key,
+						name,
+						path,
+						ranges,
+					})),
+				},
+			},
+		}).toMatchSnapshot();
+	});
+	it("expands the Cartesian both graph with one root and no eager reads", async () => {
+		const { expandBranches } = await import(
+			"../scripts/expand-branches.fabric"
+		);
+		const incoming = {
+			root: node("root", 0, "incoming"),
+			direction: "incoming" as const,
+			directionBit: 1 as const,
+			nodes: [
+				node("root", 0, "incoming"),
+				node("caller-a", 1, "incoming"),
+				node("caller-b", 1, "incoming"),
+			],
+			edges: [
+				{ from: "caller-a", to: "root", direction: 1 as const },
+				{ from: "caller-b", to: "root", direction: 1 as const },
+			],
+			boundaries: [],
+			truncated: false,
+		};
+		const outgoing = {
+			root: node("root", 0, "outgoing"),
+			direction: "outgoing" as const,
+			directionBit: 2 as const,
+			nodes: [
+				node("root", 0, "outgoing"),
+				node("callee-a", 1, "outgoing"),
+				node("callee-b", 1, "outgoing"),
+			],
+			edges: [
+				{ from: "root", to: "callee-a", direction: 2 as const },
+				{ from: "root", to: "callee-b", direction: 2 as const },
+			],
+			boundaries: [],
+			truncated: false,
+		};
+		const read = vi.fn(async () => ({ text: "unused" }));
+		const branches = [];
+		for await (const branch of expandBranches(
+			{ incoming, outgoing },
+			{ read },
+		)) {
+			branches.push({
+				direction: branch.direction,
+				nodes: branch.nodes.map((expandedNode) => expandedNode.key),
+			});
+		}
+		expect({ branches, reads: read.mock.calls }).toMatchSnapshot();
+	});
 });

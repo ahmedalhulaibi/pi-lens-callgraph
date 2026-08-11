@@ -1085,6 +1085,166 @@ exports[`distinct directional branches > 'deep 2x2 leaf Cartesian product; catcâ
 }
 `;
 
+exports[`distinct directional branches > 'incoming branches; catches eager branâ€¦' 1`] = `
+{
+  "afterBranch": {
+    "branchEnumerations": [
+      1,
+    ],
+    "reads": [],
+  },
+  "afterReads": {
+    "branchEnumerations": [
+      1,
+    ],
+    "reads": [
+      {
+        "limit": 3,
+        "offset": 11,
+        "path": "/fixtures/workspace/caller-a.ts",
+      },
+      {
+        "limit": 3,
+        "offset": 1,
+        "path": "/fixtures/workspace/root.ts",
+      },
+    ],
+  },
+  "afterSecondBranch": {
+    "branch": {
+      "direction": "incoming",
+      "nodes": [
+        {
+          "key": "caller-b",
+          "name": "caller-b",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+        },
+        {
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+        },
+      ],
+    },
+    "branchEnumerations": [
+      1,
+      2,
+    ],
+    "reads": [
+      {
+        "limit": 3,
+        "offset": 11,
+        "path": "/fixtures/workspace/caller-a.ts",
+      },
+      {
+        "limit": 3,
+        "offset": 1,
+        "path": "/fixtures/workspace/root.ts",
+      },
+    ],
+  },
+  "beforeBranch": {
+    "branchEnumerations": [],
+    "reads": [],
+  },
+  "branch": {
+    "direction": "incoming",
+    "nodes": [
+      {
+        "content": {
+          "text": "/fixtures/workspace/caller-a.ts:11-13",
+        },
+        "key": "caller-a",
+        "name": "caller-a",
+        "path": "/fixtures/workspace/caller-a.ts",
+        "ranges": {
+          "declaration": {
+            "end": 13,
+            "start": 11,
+          },
+          "selection": {
+            "end": 11,
+            "start": 11,
+          },
+        },
+      },
+      {
+        "content": {
+          "text": "/fixtures/workspace/root.ts:1-3",
+        },
+        "key": "root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 3,
+            "start": 1,
+          },
+          "selection": {
+            "end": 1,
+            "start": 1,
+          },
+        },
+      },
+    ],
+  },
+  "label": "incoming branches; catches eager branch enumeration, eager file reads, zero-based offsets, and inclusive-range off-by-one errors",
+  "readsAfterEachNode": [
+    {
+      "branchEnumerations": [
+        1,
+      ],
+      "node": "caller-a",
+      "reads": [
+        {
+          "limit": 3,
+          "offset": 11,
+          "path": "/fixtures/workspace/caller-a.ts",
+        },
+      ],
+    },
+    {
+      "branchEnumerations": [
+        1,
+      ],
+      "node": "root",
+      "reads": [
+        {
+          "limit": 3,
+          "offset": 11,
+          "path": "/fixtures/workspace/caller-a.ts",
+        },
+        {
+          "limit": 3,
+          "offset": 1,
+          "path": "/fixtures/workspace/root.ts",
+        },
+      ],
+    },
+  ],
+}
+`;
+
 exports[`distinct directional branches > 'incoming leaf-to-root; catches induceâ€¦' 1`] = `
 {
   "branches": [
@@ -1342,6 +1502,166 @@ exports[`distinct directional branches > 'incoming leaf-to-root; catches induceâ
 }
 `;
 
+exports[`distinct directional branches > 'outgoing branches; catches eager branâ€¦' 1`] = `
+{
+  "afterBranch": {
+    "branchEnumerations": [
+      1,
+    ],
+    "reads": [],
+  },
+  "afterReads": {
+    "branchEnumerations": [
+      1,
+    ],
+    "reads": [
+      {
+        "limit": 3,
+        "offset": 1,
+        "path": "/fixtures/workspace/root.ts",
+      },
+      {
+        "limit": 3,
+        "offset": 11,
+        "path": "/fixtures/workspace/callee-a.ts",
+      },
+    ],
+  },
+  "afterSecondBranch": {
+    "branch": {
+      "direction": "outgoing",
+      "nodes": [
+        {
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+        },
+        {
+          "key": "callee-b",
+          "name": "callee-b",
+          "path": "/fixtures/workspace/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+        },
+      ],
+    },
+    "branchEnumerations": [
+      1,
+      2,
+    ],
+    "reads": [
+      {
+        "limit": 3,
+        "offset": 1,
+        "path": "/fixtures/workspace/root.ts",
+      },
+      {
+        "limit": 3,
+        "offset": 11,
+        "path": "/fixtures/workspace/callee-a.ts",
+      },
+    ],
+  },
+  "beforeBranch": {
+    "branchEnumerations": [],
+    "reads": [],
+  },
+  "branch": {
+    "direction": "outgoing",
+    "nodes": [
+      {
+        "content": {
+          "text": "/fixtures/workspace/root.ts:1-3",
+        },
+        "key": "root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 3,
+            "start": 1,
+          },
+          "selection": {
+            "end": 1,
+            "start": 1,
+          },
+        },
+      },
+      {
+        "content": {
+          "text": "/fixtures/workspace/callee-a.ts:11-13",
+        },
+        "key": "callee-a",
+        "name": "callee-a",
+        "path": "/fixtures/workspace/callee-a.ts",
+        "ranges": {
+          "declaration": {
+            "end": 13,
+            "start": 11,
+          },
+          "selection": {
+            "end": 11,
+            "start": 11,
+          },
+        },
+      },
+    ],
+  },
+  "label": "outgoing branches; catches eager branch enumeration, reversed node order, and reads issued before a node is consumed",
+  "readsAfterEachNode": [
+    {
+      "branchEnumerations": [
+        1,
+      ],
+      "node": "root",
+      "reads": [
+        {
+          "limit": 3,
+          "offset": 1,
+          "path": "/fixtures/workspace/root.ts",
+        },
+      ],
+    },
+    {
+      "branchEnumerations": [
+        1,
+      ],
+      "node": "callee-a",
+      "reads": [
+        {
+          "limit": 3,
+          "offset": 1,
+          "path": "/fixtures/workspace/root.ts",
+        },
+        {
+          "limit": 3,
+          "offset": 11,
+          "path": "/fixtures/workspace/callee-a.ts",
+        },
+      ],
+    },
+  ],
+}
+`;
+
 exports[`distinct directional branches > 'outgoing root-to-leaf; catches induceâ€¦' 1`] = `
 {
   "branches": [
@@ -1596,6 +1916,46 @@ exports[`distinct directional branches > 'outgoing root-to-leaf; catches induceâ
     },
   ],
   "label": "outgoing root-to-leaf; catches induced edges, reversed paths, and dropped annotations",
+}
+`;
+
+exports[`distinct directional branches > expands the Cartesian both graph with one root and no eager reads 1`] = `
+{
+  "branches": [
+    {
+      "direction": "both",
+      "nodes": [
+        "caller-a",
+        "root",
+        "callee-a",
+      ],
+    },
+    {
+      "direction": "both",
+      "nodes": [
+        "caller-a",
+        "root",
+        "callee-b",
+      ],
+    },
+    {
+      "direction": "both",
+      "nodes": [
+        "caller-b",
+        "root",
+        "callee-a",
+      ],
+    },
+    {
+      "direction": "both",
+      "nodes": [
+        "caller-b",
+        "root",
+        "callee-b",
+      ],
+    },
+  ],
+  "reads": [],
 }
 `;
 
