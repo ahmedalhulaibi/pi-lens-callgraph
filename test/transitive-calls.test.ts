@@ -252,3 +252,94 @@ it.each([
 	);
 	expect({ label, outcome }).toMatchSnapshot();
 });
+
+describe("distinct directional branches", () => {
+	const node = (
+		key: string,
+		depth: number,
+		direction: "incoming" | "outgoing",
+		status: "included" | "filtered" = "included",
+	) => ({
+		key,
+		name: key,
+		path: `/fixtures/workspace/${key}.ts`,
+		ranges: {
+			declaration: { start: depth * 10 + 1, end: depth * 10 + 3 },
+			selection: { start: depth * 10 + 1, end: depth * 10 + 1 },
+		},
+		depth,
+		direction,
+		status,
+		...(status === "filtered" ? { filteredBy: ["generated", "vendor"] } : {}),
+	});
+
+	it.each([
+		{
+			label:
+				"incoming leaf-to-root; catches induced edges, reversed paths, and dropped annotations",
+			direction: "incoming" as const,
+			directionBit: 1 as const,
+			nodes: [
+				node("root", 0, "incoming"),
+				node("parent", 1, "incoming"),
+				node("leaf", 2, "incoming"),
+				node("filtered", 1, "incoming", "filtered"),
+			],
+			edges: [
+				{ from: "parent", to: "root", direction: 1 as const },
+				{ from: "leaf", to: "parent", direction: 1 as const },
+				{ from: "leaf", to: "root", direction: 1 as const },
+				{ from: "filtered", to: "root", direction: 1 as const },
+			],
+			boundary: {
+				from: "outside",
+				to: "parent",
+				direction: 1 as const,
+				target: "outside",
+				uri: "file:///fixtures/external/outside.ts",
+				reason: "outside_workspace" as const,
+			},
+		},
+		{
+			label:
+				"outgoing root-to-leaf; catches induced edges, reversed paths, and dropped annotations",
+			direction: "outgoing" as const,
+			directionBit: 2 as const,
+			nodes: [
+				node("root", 0, "outgoing"),
+				node("child", 1, "outgoing"),
+				node("leaf", 2, "outgoing"),
+				node("filtered", 1, "outgoing", "filtered"),
+			],
+			edges: [
+				{ from: "root", to: "child", direction: 2 as const },
+				{ from: "child", to: "leaf", direction: 2 as const },
+				{ from: "root", to: "leaf", direction: 2 as const },
+				{ from: "root", to: "filtered", direction: 2 as const },
+			],
+			boundary: {
+				from: "child",
+				to: "outside",
+				direction: 2 as const,
+				target: "outside",
+				uri: "file:///fixtures/external/outside.ts",
+				reason: "outside_workspace" as const,
+			},
+		},
+	] as const)("$label", async (scenario) => {
+		const { distinctBranches } = await import("../scripts/branches.fabric");
+		const input = {
+			root: scenario.nodes[0],
+			direction: scenario.direction,
+			directionBit: scenario.directionBit,
+			nodes: [...scenario.nodes],
+			edges: [...scenario.edges],
+			boundaries: [scenario.boundary],
+			truncated: true,
+		};
+		expect({
+			label: scenario.label,
+			branches: distinctBranches(input),
+		}).toMatchSnapshot();
+	});
+});

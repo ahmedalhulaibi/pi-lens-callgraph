@@ -581,6 +581,520 @@ exports[`direction outgoing > snapshots the complete directional contract and de
 }
 `;
 
+exports[`distinct directional branches > 'incoming leaf-to-root; catches induce…' 1`] = `
+{
+  "branches": [
+    {
+      "boundaries": [
+        {
+          "direction": 1,
+          "from": "outside",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "parent",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "leaf",
+          "to": "parent",
+        },
+        {
+          "direction": 1,
+          "from": "parent",
+          "to": "root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 2,
+          "direction": "incoming",
+          "key": "leaf",
+          "name": "leaf",
+          "path": "/fixtures/workspace/leaf.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "parent",
+          "name": "parent",
+          "path": "/fixtures/workspace/parent.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "truncated": true,
+    },
+    {
+      "boundaries": [
+        {
+          "direction": 1,
+          "from": "outside",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "parent",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "parent",
+          "to": "root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "parent",
+          "name": "parent",
+          "path": "/fixtures/workspace/parent.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "truncated": true,
+    },
+    {
+      "boundaries": [],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "leaf",
+          "to": "root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 2,
+          "direction": "incoming",
+          "key": "leaf",
+          "name": "leaf",
+          "path": "/fixtures/workspace/leaf.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "truncated": true,
+    },
+    {
+      "boundaries": [],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "filtered",
+          "to": "root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "filteredBy": [
+            "generated",
+            "vendor",
+          ],
+          "key": "filtered",
+          "name": "filtered",
+          "path": "/fixtures/workspace/filtered.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "filtered",
+        },
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "truncated": true,
+    },
+  ],
+  "label": "incoming leaf-to-root; catches induced edges, reversed paths, and dropped annotations",
+}
+`;
+
+exports[`distinct directional branches > 'outgoing root-to-leaf; catches induce…' 1`] = `
+{
+  "branches": [
+    {
+      "boundaries": [
+        {
+          "direction": 2,
+          "from": "child",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "outside",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "root",
+          "to": "child",
+        },
+        {
+          "direction": 2,
+          "from": "child",
+          "to": "leaf",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "child",
+          "name": "child",
+          "path": "/fixtures/workspace/child.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "leaf",
+          "name": "leaf",
+          "path": "/fixtures/workspace/leaf.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "truncated": true,
+    },
+    {
+      "boundaries": [
+        {
+          "direction": 2,
+          "from": "child",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "outside",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "root",
+          "to": "child",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "child",
+          "name": "child",
+          "path": "/fixtures/workspace/child.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "truncated": true,
+    },
+    {
+      "boundaries": [],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "root",
+          "to": "leaf",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "leaf",
+          "name": "leaf",
+          "path": "/fixtures/workspace/leaf.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "truncated": true,
+    },
+    {
+      "boundaries": [],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "root",
+          "to": "filtered",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "filteredBy": [
+            "generated",
+            "vendor",
+          ],
+          "key": "filtered",
+          "name": "filtered",
+          "path": "/fixtures/workspace/filtered.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "filtered",
+        },
+      ],
+      "truncated": true,
+    },
+  ],
+  "label": "outgoing root-to-leaf; catches induced edges, reversed paths, and dropped annotations",
+}
+`;
+
 exports[`is deterministic when the LSP returns calls in a different order 1`] = `
 {
   "forward": {
