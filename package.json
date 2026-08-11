@@ -19,5 +19,8 @@
 		"skills": [
 			"./skills"
 		]
+	},
+	"dependencies": {
+		"effect": "3.22.1"
 	}
 }

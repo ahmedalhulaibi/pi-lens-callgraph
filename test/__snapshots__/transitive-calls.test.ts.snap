@@ -1,57 +1,1078 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`transitive call snapshot foundation > snapshots fixture, prepare, walk, result, and dependency trace phases 1`] = `
+exports[`direction both > snapshots the complete directional contract and dependency trace 1`] = `
 {
-  "dependencyTrace": {
-    "lspNavigation": [
-      {
-        "line": 5,
-        "operation": "prepareCallHierarchy",
+  "label": "both",
+  "result": {
+    "incoming": {
+      "boundaries": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/external/outside.ts|2:0|outside",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "name": "callerA",
+          "path": "/fixtures/workspace/caller-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 4,
+              "start": 2,
+            },
+            "selection": {
+              "end": 2,
+              "start": 2,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "name": "callerB",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 14,
+              "start": 13,
+            },
+            "selection": {
+              "end": 13,
+              "start": 13,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
         "path": "/fixtures/workspace/root.ts",
-        "phase": "prepare",
-        "symbol": "root",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
       },
-      {
-        "operation": "incomingCalls",
-        "phase": "walk",
-        "symbol": "root",
-      },
-      {
-        "operation": "outgoingCalls",
-        "phase": "walk",
-        "symbol": "root",
-      },
-      {
-        "operation": "incomingCalls",
-        "phase": "walk",
-        "symbol": "caller",
-      },
-      {
-        "operation": "outgoingCalls",
-        "phase": "walk",
-        "symbol": "callee",
-      },
-    ],
-    "read": [],
-  },
-  "fixture": {
-    "files": {
-      "/fixtures/workspace/callee.ts": "function callee() { return 1; }
-",
-      "/fixtures/workspace/caller.ts": "function caller() { return root(); }
-",
-      "/fixtures/workspace/root.ts": "function root() { return callee(); }
-",
+      "truncated": false,
     },
-    "root": "root",
-    "workspaceRoot": "/fixtures/workspace",
+    "outgoing": {
+      "boundaries": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/external/outside.ts|2:0|outside",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "name": "calleeA",
+          "path": "/fixtures/workspace/callee-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 11,
+              "start": 9,
+            },
+            "selection": {
+              "end": 9,
+              "start": 9,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "name": "calleeB",
+          "path": "/fixtures/workspace/generated/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 21,
+              "start": 19,
+            },
+            "selection": {
+              "end": 19,
+              "start": 19,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "name": "shared",
+          "path": "/fixtures/workspace/shared.ts",
+          "ranges": {
+            "declaration": {
+              "end": 27,
+              "start": 25,
+            },
+            "selection": {
+              "end": 25,
+              "start": 25,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
   },
-  "phases": [
-    "fixture",
-    "prepare",
-    "walk",
-    "result",
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerA",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerB",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeA",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeB",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "shared",
+    },
   ],
+}
+`;
+
+exports[`direction incoming > snapshots the complete directional contract and dependency trace 1`] = `
+{
+  "label": "incoming",
+  "result": {
+    "incoming": {
+      "boundaries": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/external/outside.ts|2:0|outside",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "name": "callerA",
+          "path": "/fixtures/workspace/caller-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 4,
+              "start": 2,
+            },
+            "selection": {
+              "end": 2,
+              "start": 2,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "name": "callerB",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 14,
+              "start": 13,
+            },
+            "selection": {
+              "end": 13,
+              "start": 13,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+  },
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerA",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerB",
+    },
+  ],
+}
+`;
+
+exports[`direction outgoing > snapshots the complete directional contract and dependency trace 1`] = `
+{
+  "label": "outgoing",
+  "result": {
+    "outgoing": {
+      "boundaries": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/external/outside.ts|2:0|outside",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "name": "calleeA",
+          "path": "/fixtures/workspace/callee-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 11,
+              "start": 9,
+            },
+            "selection": {
+              "end": 9,
+              "start": 9,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "name": "calleeB",
+          "path": "/fixtures/workspace/generated/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 21,
+              "start": 19,
+            },
+            "selection": {
+              "end": 19,
+              "start": 19,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "name": "shared",
+          "path": "/fixtures/workspace/shared.ts",
+          "ranges": {
+            "declaration": {
+              "end": 27,
+              "start": 25,
+            },
+            "selection": {
+              "end": 25,
+              "start": 25,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+  },
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeA",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeB",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "shared",
+    },
+  ],
+}
+`;
+
+exports[`is deterministic when the LSP returns calls in a different order 1`] = `
+{
+  "forward": {
+    "incoming": {
+      "boundaries": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/external/outside.ts|2:0|outside",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "name": "callerA",
+          "path": "/fixtures/workspace/caller-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 4,
+              "start": 2,
+            },
+            "selection": {
+              "end": 2,
+              "start": 2,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "name": "callerB",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 14,
+              "start": 13,
+            },
+            "selection": {
+              "end": 13,
+              "start": 13,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+    "outgoing": {
+      "boundaries": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/external/outside.ts|2:0|outside",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "name": "calleeA",
+          "path": "/fixtures/workspace/callee-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 11,
+              "start": 9,
+            },
+            "selection": {
+              "end": 9,
+              "start": 9,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "name": "calleeB",
+          "path": "/fixtures/workspace/generated/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 21,
+              "start": 19,
+            },
+            "selection": {
+              "end": 19,
+              "start": 19,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "name": "shared",
+          "path": "/fixtures/workspace/shared.ts",
+          "ranges": {
+            "declaration": {
+              "end": 27,
+              "start": 25,
+            },
+            "selection": {
+              "end": 25,
+              "start": 25,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+  },
+  "reversed": {
+    "incoming": {
+      "boundaries": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/external/outside.ts|2:0|outside",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "name": "callerA",
+          "path": "/fixtures/workspace/caller-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 4,
+              "start": 2,
+            },
+            "selection": {
+              "end": 2,
+              "start": 2,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "name": "callerB",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 14,
+              "start": 13,
+            },
+            "selection": {
+              "end": 13,
+              "start": 13,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+    "outgoing": {
+      "boundaries": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/external/outside.ts|2:0|outside",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "name": "calleeA",
+          "path": "/fixtures/workspace/callee-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 11,
+              "start": 9,
+            },
+            "selection": {
+              "end": 9,
+              "start": 9,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "name": "calleeB",
+          "path": "/fixtures/workspace/generated/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 21,
+              "start": 19,
+            },
+            "selection": {
+              "end": 19,
+              "start": 19,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "name": "shared",
+          "path": "/fixtures/workspace/shared.ts",
+          "ranges": {
+            "declaration": {
+              "end": 27,
+              "start": 25,
+            },
+            "selection": {
+              "end": 25,
+              "start": 25,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+  },
+}
+`;
+
+exports[`scenario depth truncation > snapshots annotations and graph coherence 1`] = `
+{
+  "label": "depth truncation",
   "result": {
     "incoming": {
       "boundaries": [],
@@ -60,7 +1081,12 @@ exports[`transitive call snapshot foundation > snapshots fixture, prepare, walk,
       "edges": [
         {
           "direction": 1,
-          "from": "file:///fixtures/workspace/caller.ts|1:0|caller",
+          "from": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
           "to": "file:///fixtures/workspace/root.ts|4:0|root",
         },
       ],
@@ -86,9 +1112,9 @@ exports[`transitive call snapshot foundation > snapshots fixture, prepare, walk,
         {
           "depth": 1,
           "direction": "incoming",
-          "key": "file:///fixtures/workspace/caller.ts|1:0|caller",
-          "name": "caller",
-          "path": "/fixtures/workspace/caller.ts",
+          "key": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "name": "callerA",
+          "path": "/fixtures/workspace/caller-a.ts",
           "ranges": {
             "declaration": {
               "end": 4,
@@ -97,6 +1123,268 @@ exports[`transitive call snapshot foundation > snapshots fixture, prepare, walk,
             "selection": {
               "end": 2,
               "start": 2,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "name": "callerB",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 14,
+              "start": 13,
+            },
+            "selection": {
+              "end": 13,
+              "start": 13,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": true,
+    },
+    "outgoing": {
+      "boundaries": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/external/outside.ts|2:0|outside",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "name": "calleeA",
+          "path": "/fixtures/workspace/callee-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 11,
+              "start": 9,
+            },
+            "selection": {
+              "end": 9,
+              "start": 9,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "name": "calleeB",
+          "path": "/fixtures/workspace/generated/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 21,
+              "start": 19,
+            },
+            "selection": {
+              "end": 19,
+              "start": 19,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": true,
+    },
+  },
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "root",
+    },
+  ],
+}
+`;
+
+exports[`scenario filesystem root workspace > snapshots annotations and graph coherence 1`] = `
+{
+  "label": "filesystem root workspace",
+  "result": {
+    "incoming": {
+      "boundaries": [],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/external/outside.ts|2:0|outside",
+          "to": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "name": "callerA",
+          "path": "/fixtures/workspace/caller-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 4,
+              "start": 2,
+            },
+            "selection": {
+              "end": 2,
+              "start": 2,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "name": "callerB",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 14,
+              "start": 13,
+            },
+            "selection": {
+              "end": 13,
+              "start": 13,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "incoming",
+          "key": "file:///fixtures/external/outside.ts|2:0|outside",
+          "name": "outside",
+          "path": "/fixtures/external/outside.ts",
+          "ranges": {
+            "declaration": {
+              "end": 5,
+              "start": 3,
+            },
+            "selection": {
+              "end": 3,
+              "start": 3,
             },
           },
           "status": "included",
@@ -129,8 +1417,33 @@ exports[`transitive call snapshot foundation > snapshots fixture, prepare, walk,
       "edges": [
         {
           "direction": 2,
+          "from": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
           "from": "file:///fixtures/workspace/root.ts|4:0|root",
-          "to": "file:///fixtures/workspace/callee.ts|8:0|callee",
+          "to": "file:///fixtures/external/outside.ts|2:0|outside",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
         },
       ],
       "nodes": [
@@ -155,9 +1468,544 @@ exports[`transitive call snapshot foundation > snapshots fixture, prepare, walk,
         {
           "depth": 1,
           "direction": "outgoing",
-          "key": "file:///fixtures/workspace/callee.ts|8:0|callee",
-          "name": "callee",
-          "path": "/fixtures/workspace/callee.ts",
+          "key": "file:///fixtures/external/outside.ts|2:0|outside",
+          "name": "outside",
+          "path": "/fixtures/external/outside.ts",
+          "ranges": {
+            "declaration": {
+              "end": 5,
+              "start": 3,
+            },
+            "selection": {
+              "end": 3,
+              "start": 3,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "name": "calleeA",
+          "path": "/fixtures/workspace/callee-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 11,
+              "start": 9,
+            },
+            "selection": {
+              "end": 9,
+              "start": 9,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "name": "calleeB",
+          "path": "/fixtures/workspace/generated/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 21,
+              "start": 19,
+            },
+            "selection": {
+              "end": 19,
+              "start": 19,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "name": "shared",
+          "path": "/fixtures/workspace/shared.ts",
+          "ranges": {
+            "declaration": {
+              "end": 27,
+              "start": 25,
+            },
+            "selection": {
+              "end": 25,
+              "start": 25,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+  },
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerA",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerB",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "outside",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "outside",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeA",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeB",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "shared",
+    },
+  ],
+}
+`;
+
+exports[`scenario filtered provenance > snapshots annotations and graph coherence 1`] = `
+{
+  "label": "filtered provenance",
+  "result": {
+    "incoming": {
+      "boundaries": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/external/outside.ts|2:0|outside",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "name": "callerA",
+          "path": "/fixtures/workspace/caller-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 4,
+              "start": 2,
+            },
+            "selection": {
+              "end": 2,
+              "start": 2,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+          "name": "callerB",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 14,
+              "start": 13,
+            },
+            "selection": {
+              "end": 13,
+              "start": 13,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+    "outgoing": {
+      "boundaries": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/external/outside.ts|2:0|outside",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+        },
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "name": "calleeA",
+          "path": "/fixtures/workspace/callee-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 11,
+              "start": 9,
+            },
+            "selection": {
+              "end": 9,
+              "start": 9,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "filteredBy": [
+            "generated",
+            "calleeB",
+          ],
+          "key": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+          "name": "calleeB",
+          "path": "/fixtures/workspace/generated/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 21,
+              "start": 19,
+            },
+            "selection": {
+              "end": 19,
+              "start": 19,
+            },
+          },
+          "status": "filtered",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/shared.ts|24:0|shared",
+          "name": "shared",
+          "path": "/fixtures/workspace/shared.ts",
+          "ranges": {
+            "declaration": {
+              "end": 27,
+              "start": 25,
+            },
+            "selection": {
+              "end": 25,
+              "start": 25,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+  },
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerA",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerB",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeA",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "shared",
+    },
+  ],
+}
+`;
+
+exports[`scenario node truncation > snapshots annotations and graph coherence 1`] = `
+{
+  "label": "node truncation",
+  "result": {
+    "incoming": {
+      "boundaries": [],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+          "name": "callerA",
+          "path": "/fixtures/workspace/caller-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 4,
+              "start": 2,
+            },
+            "selection": {
+              "end": 2,
+              "start": 2,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": true,
+    },
+    "outgoing": {
+      "boundaries": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "reason": "outside_workspace",
+          "target": "outside",
+          "to": "file:///fixtures/external/outside.ts|2:0|outside",
+          "uri": "file:///fixtures/external/outside.ts",
+        },
+      ],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+          "name": "calleeA",
+          "path": "/fixtures/workspace/callee-a.ts",
           "ranges": {
             "declaration": {
               "end": 11,
@@ -189,8 +2037,570 @@ exports[`transitive call snapshot foundation > snapshots fixture, prepare, walk,
         },
         "status": "included",
       },
-      "truncated": false,
+      "truncated": true,
     },
+  },
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerA",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeA",
+    },
+  ],
+}
+`;
+
+exports[`snapshots input error: empty path 1`] = `
+{
+  "error": "path must be a non-empty string",
+  "label": "empty path",
+  "trace": [],
+}
+`;
+
+exports[`snapshots input error: empty symbol 1`] = `
+{
+  "error": "symbol must be a non-empty string",
+  "label": "empty symbol",
+  "trace": [],
+}
+`;
+
+exports[`snapshots input error: empty workspace 1`] = `
+{
+  "error": "workspaceRoot must be a non-empty string",
+  "label": "empty workspace",
+  "trace": [],
+}
+`;
+
+exports[`snapshots input error: invalid direction 1`] = `
+{
+  "error": "direction must be 1 (incoming), 2 (outgoing), or 3 (both)",
+  "label": "invalid direction",
+  "trace": [],
+}
+`;
+
+exports[`snapshots input error: malformed pattern 1`] = `
+{
+  "error": "Invalid regex pattern "[": Invalid regular expression: /[/: Unterminated character class",
+  "label": "malformed pattern",
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+  ],
+}
+`;
+
+exports[`snapshots input error: missing options 1`] = `
+{
+  "error": "options must be an object",
+  "label": "missing options",
+  "trace": [],
+}
+`;
+
+exports[`snapshots input error: negative depth 1`] = `
+{
+  "error": "maxDepth must be a non-negative integer",
+  "label": "negative depth",
+  "trace": [],
+}
+`;
+
+exports[`snapshots input error: negative line 1`] = `
+{
+  "error": "line must be a non-negative integer",
+  "label": "negative line",
+  "trace": [],
+}
+`;
+
+exports[`snapshots input error: non-array patterns 1`] = `
+{
+  "error": "regexPatterns must be an array of strings",
+  "label": "non-array patterns",
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+  ],
+}
+`;
+
+exports[`snapshots input error: non-string workspace 1`] = `
+{
+  "error": "workspaceRoot must be a non-empty string",
+  "label": "non-string workspace",
+  "trace": [],
+}
+`;
+
+exports[`snapshots input error: zero nodes 1`] = `
+{
+  "error": "maxNodes must be a positive integer",
+  "label": "zero nodes",
+  "trace": [],
+}
+`;
+
+exports[`snapshots provider error: dot-segment root outside workspace 1`] = `
+{
+  "error": "Prepared call hierarchy root is outside workspaceRoot",
+  "label": "dot-segment root outside workspace",
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+  ],
+}
+`;
+
+exports[`snapshots provider error: invalid outgoing call 1`] = `
+{
+  "error": "Invalid pi-lens response: result[0] has no valid outgoing target",
+  "label": "invalid outgoing call",
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerA",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerB",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "root",
+    },
+  ],
+}
+`;
+
+exports[`snapshots provider error: invalid prepared item 1`] = `
+{
+  "error": "Invalid pi-lens response: result[0] is not a call hierarchy item",
+  "label": "invalid prepared item",
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+  ],
+}
+`;
+
+exports[`snapshots provider error: missing result 1`] = `
+{
+  "error": "Invalid pi-lens response: result must be an array",
+  "label": "missing result",
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+  ],
+}
+`;
+
+exports[`snapshots provider error: null envelope 1`] = `
+{
+  "error": "Invalid pi-lens response: result must be an array",
+  "label": "null envelope",
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+  ],
+}
+`;
+
+exports[`snapshots provider error: root outside workspace 1`] = `
+{
+  "error": "Prepared call hierarchy root is outside workspaceRoot",
+  "label": "root outside workspace",
+  "trace": [
+    {
+      "line": 5,
+      "operation": "prepareCallHierarchy",
+      "path": "/fixtures/workspace/root.ts",
+    },
+  ],
+}
+`;
+
+exports[`snapshots the public incoming API 1`] = `
+{
+  "label": "incoming",
+  "result": {
+    "boundaries": [
+      {
+        "direction": 1,
+        "from": "file:///fixtures/external/outside.ts|2:0|outside",
+        "reason": "outside_workspace",
+        "target": "outside",
+        "to": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+        "uri": "file:///fixtures/external/outside.ts",
+      },
+    ],
+    "direction": "incoming",
+    "directionBit": 1,
+    "edges": [
+      {
+        "direction": 1,
+        "from": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+        "to": "file:///fixtures/workspace/root.ts|4:0|root",
+      },
+      {
+        "direction": 1,
+        "from": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+        "to": "file:///fixtures/workspace/root.ts|4:0|root",
+      },
+      {
+        "direction": 1,
+        "from": "file:///fixtures/workspace/root.ts|4:0|root",
+        "to": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+      },
+    ],
+    "nodes": [
+      {
+        "depth": 0,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      {
+        "depth": 1,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/caller-a.ts|1:0|callerA",
+        "name": "callerA",
+        "path": "/fixtures/workspace/caller-a.ts",
+        "ranges": {
+          "declaration": {
+            "end": 4,
+            "start": 2,
+          },
+          "selection": {
+            "end": 2,
+            "start": 2,
+          },
+        },
+        "status": "included",
+      },
+      {
+        "depth": 1,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/caller-b.ts|12:0|callerB",
+        "name": "callerB",
+        "path": "/fixtures/workspace/caller-b.ts",
+        "ranges": {
+          "declaration": {
+            "end": 14,
+            "start": 13,
+          },
+          "selection": {
+            "end": 13,
+            "start": 13,
+          },
+        },
+        "status": "included",
+      },
+    ],
+    "root": {
+      "depth": 0,
+      "direction": "incoming",
+      "key": "file:///fixtures/workspace/root.ts|4:0|root",
+      "name": "root",
+      "path": "/fixtures/workspace/root.ts",
+      "ranges": {
+        "declaration": {
+          "end": 7,
+          "start": 5,
+        },
+        "selection": {
+          "end": 5,
+          "start": 5,
+        },
+      },
+      "status": "included",
+    },
+    "truncated": false,
+  },
+  "trace": [
+    {
+      "operation": "incomingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerA",
+    },
+    {
+      "operation": "incomingCalls",
+      "symbol": "callerB",
+    },
+  ],
+}
+`;
+
+exports[`snapshots the public outgoing API 1`] = `
+{
+  "label": "outgoing",
+  "result": {
+    "boundaries": [
+      {
+        "direction": 2,
+        "from": "file:///fixtures/workspace/root.ts|4:0|root",
+        "reason": "outside_workspace",
+        "target": "outside",
+        "to": "file:///fixtures/external/outside.ts|2:0|outside",
+        "uri": "file:///fixtures/external/outside.ts",
+      },
+    ],
+    "direction": "outgoing",
+    "directionBit": 2,
+    "edges": [
+      {
+        "direction": 2,
+        "from": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+      },
+      {
+        "direction": 2,
+        "from": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+        "to": "file:///fixtures/workspace/shared.ts|24:0|shared",
+      },
+      {
+        "direction": 2,
+        "from": "file:///fixtures/workspace/root.ts|4:0|root",
+        "to": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+      },
+      {
+        "direction": 2,
+        "from": "file:///fixtures/workspace/root.ts|4:0|root",
+        "to": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+      },
+      {
+        "direction": 2,
+        "from": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        "to": "file:///fixtures/workspace/root.ts|4:0|root",
+      },
+    ],
+    "nodes": [
+      {
+        "depth": 0,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      {
+        "depth": 1,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/callee-a.ts|8:0|calleeA",
+        "name": "calleeA",
+        "path": "/fixtures/workspace/callee-a.ts",
+        "ranges": {
+          "declaration": {
+            "end": 11,
+            "start": 9,
+          },
+          "selection": {
+            "end": 9,
+            "start": 9,
+          },
+        },
+        "status": "included",
+      },
+      {
+        "depth": 1,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/generated/callee-b.ts|18:0|calleeB",
+        "name": "calleeB",
+        "path": "/fixtures/workspace/generated/callee-b.ts",
+        "ranges": {
+          "declaration": {
+            "end": 21,
+            "start": 19,
+          },
+          "selection": {
+            "end": 19,
+            "start": 19,
+          },
+        },
+        "status": "included",
+      },
+      {
+        "depth": 2,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/shared.ts|24:0|shared",
+        "name": "shared",
+        "path": "/fixtures/workspace/shared.ts",
+        "ranges": {
+          "declaration": {
+            "end": 27,
+            "start": 25,
+          },
+          "selection": {
+            "end": 25,
+            "start": 25,
+          },
+        },
+        "status": "included",
+      },
+    ],
+    "root": {
+      "depth": 0,
+      "direction": "outgoing",
+      "key": "file:///fixtures/workspace/root.ts|4:0|root",
+      "name": "root",
+      "path": "/fixtures/workspace/root.ts",
+      "ranges": {
+        "declaration": {
+          "end": 7,
+          "start": 5,
+        },
+        "selection": {
+          "end": 5,
+          "start": 5,
+        },
+      },
+      "status": "included",
+    },
+    "truncated": false,
+  },
+  "trace": [
+    {
+      "operation": "outgoingCalls",
+      "symbol": "root",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeA",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "calleeB",
+    },
+    {
+      "operation": "outgoingCalls",
+      "symbol": "shared",
+    },
+  ],
+}
+`;
+
+exports[`snapshots typed error category: dependency unavailable 1`] = `
+{
+  "label": "dependency unavailable",
+  "outcome": {
+    "_tag": "TransitiveCallError",
+    "category": "dependency_unavailable",
+    "message": "pi-lens is required: extensions.lsp_navigation is unavailable",
+  },
+}
+`;
+
+exports[`snapshots typed error category: invalid input 1`] = `
+{
+  "label": "invalid input",
+  "outcome": {
+    "_tag": "TransitiveCallError",
+    "category": "invalid_input",
+    "message": "path must be a non-empty string",
+  },
+}
+`;
+
+exports[`snapshots typed error category: provider response 1`] = `
+{
+  "label": "provider response",
+  "outcome": {
+    "_tag": "TransitiveCallError",
+    "category": "provider_response",
+    "message": "Invalid pi-lens response: content contains an invalid part",
+  },
+}
+`;
+
+exports[`snapshots typed error category: traversal failed 1`] = `
+{
+  "label": "traversal failed",
+  "outcome": {
+    "_tag": "TransitiveCallError",
+    "category": "traversal_failed",
+    "message": "transport must be reset",
+  },
+}
+`;
+
+exports[`snapshots typed error category: workspace boundary 1`] = `
+{
+  "label": "workspace boundary",
+  "outcome": {
+    "_tag": "TransitiveCallError",
+    "category": "workspace_boundary",
+    "message": "Prepared call hierarchy root is outside workspaceRoot",
   },
 }
 `;
