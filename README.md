@@ -25,4 +25,4 @@ pi install git:github.com/ahmedalhulaibi/pi-lens-callgraph@v0.1.0
 - `maxDepth`
 - `maxNodes`
 
-It returns workspace nodes and edges plus excluded boundary crossings. It does not assume a local path or symbol.
+It returns workspace nodes and edges plus excluded boundary crossings. Each node includes one-based declaration and selection line ranges. It does not assume a local path or symbol.

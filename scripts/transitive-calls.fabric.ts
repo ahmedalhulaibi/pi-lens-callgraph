@@ -21,6 +21,10 @@ const isInside = (uri, root) => {
 };
 const itemKey = (item) =>
 	`${item.uri}|${item.selectionRange.start.line}:${item.selectionRange.start.character}|${item.name}`;
+const lineRanges = (item) => ({
+	declaration: { start: item.range.start.line + 1, end: item.range.end.line + 1 },
+	selection: { start: item.selectionRange.start.line + 1, end: item.selectionRange.end.line + 1 },
+});
 async function transitiveCalls(options) {
 	if (typeof extensions?.lsp_navigation !== "function") {
 		throw new Error(
@@ -53,6 +57,7 @@ async function transitiveCalls(options) {
 			key: currentKey,
 			name: current.item.name,
 			path: filePath(current.item.uri),
+			ranges: lineRanges(current.item),
 			depth: current.depth,
 		});
 		if (current.depth >= options.maxDepth) continue;
@@ -92,7 +97,7 @@ async function transitiveCalls(options) {
 		}
 	}
 	return {
-		root: { name: root.name, path: filePath(root.uri) },
+		root: { name: root.name, path: filePath(root.uri), ranges: lineRanges(root) },
 		nodes,
 		edges,
 		boundaries,
