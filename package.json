@@ -16,11 +16,18 @@
 		"pi-package"
 	],
 	"pi": {
+		"extensions": [
+			"./extensions"
+		],
 		"skills": [
 			"./skills"
 		]
 	},
 	"dependencies": {
 		"effect": "3.22.1"
+	},
+	"peerDependencies": {
+		"@earendil-works/pi-coding-agent": "*",
+		"typebox": "*"
 	}
 }
