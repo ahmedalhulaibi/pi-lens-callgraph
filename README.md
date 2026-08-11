@@ -21,8 +21,9 @@ pi install git:github.com/ahmedalhulaibi/pi-lens-callgraph@v0.1.0
 - `line`
 - `symbol`
 - `workspaceRoot`
-- `direction`
+- `direction`: `1` incoming, `2` outgoing, `3` both
 - `maxDepth`
 - `maxNodes`
+- `regexPatterns` (optional)
 
-It returns workspace nodes and edges plus excluded boundary crossings. Each node includes one-based declaration and selection line ranges. It does not assume a local path or symbol.
+It returns `{ incoming?, outgoing? }`, omitting unrequested branches. Each branch returns workspace nodes and edges plus excluded boundary crossings. Matching nodes remain as `status: "filtered"` provenance records and are not expanded. Each node includes one-based declaration and selection line ranges. It does not assume a local path or symbol.
