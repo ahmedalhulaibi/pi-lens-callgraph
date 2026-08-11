@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+files="$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|json|ts)$' || true)"
+if [ -z "$files" ]; then
+  exit 0
+fi
+
+printf '%s\n' "$files" | xargs npx --no-install @biomejs/biome check --write
+printf '%s\n' "$files" | xargs git add --

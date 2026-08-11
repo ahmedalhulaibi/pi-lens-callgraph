@@ -1,9 +1,21 @@
 {
-  "name": "pi-lens-callgraph",
-  "version": "0.1.0",
-  "description": "Lazy transitive function and method traversal over pi-lens LSP call hierarchy.",
-  "keywords": ["pi-package"],
-  "pi": {
-    "skills": ["./skills"]
-  }
+	"name": "pi-lens-callgraph",
+	"version": "0.1.0",
+	"description": "Lazy transitive function and method traversal over pi-lens LSP call hierarchy.",
+	"scripts": {
+		"check": "biome check --write .",
+		"format": "biome format --write .",
+		"lint": "biome lint --write ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.7"
+	},
+	"keywords": [
+		"pi-package"
+	],
+	"pi": {
+		"skills": [
+			"./skills"
+		]
+	}
 }
