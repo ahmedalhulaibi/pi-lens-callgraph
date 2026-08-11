@@ -1,0 +1,9 @@
+{
+  "name": "pi-lens-callgraph",
+  "version": "0.1.0",
+  "description": "Lazy transitive function and method traversal over pi-lens LSP call hierarchy.",
+  "keywords": ["pi-package"],
+  "pi": {
+    "skills": ["./skills"]
+  }
+}
