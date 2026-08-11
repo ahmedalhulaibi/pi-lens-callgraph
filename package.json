@@ -5,10 +5,12 @@
 	"scripts": {
 		"check": "biome check --write .",
 		"format": "biome format --write .",
-		"lint": "biome lint --write ."
+		"lint": "biome lint --write .",
+		"test": "vitest run"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.5.7"
+		"@biomejs/biome": "^2.5.7",
+		"vitest": "3.2.4"
 	},
 	"keywords": [
 		"pi-package"

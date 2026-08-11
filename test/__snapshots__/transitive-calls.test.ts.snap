@@ -1,0 +1,196 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`transitive call snapshot foundation > snapshots fixture, prepare, walk, result, and dependency trace phases 1`] = `
+{
+  "dependencyTrace": {
+    "lspNavigation": [
+      {
+        "line": 5,
+        "operation": "prepareCallHierarchy",
+        "path": "/fixtures/workspace/root.ts",
+        "phase": "prepare",
+        "symbol": "root",
+      },
+      {
+        "operation": "incomingCalls",
+        "phase": "walk",
+        "symbol": "root",
+      },
+      {
+        "operation": "outgoingCalls",
+        "phase": "walk",
+        "symbol": "root",
+      },
+      {
+        "operation": "incomingCalls",
+        "phase": "walk",
+        "symbol": "caller",
+      },
+      {
+        "operation": "outgoingCalls",
+        "phase": "walk",
+        "symbol": "callee",
+      },
+    ],
+    "read": [],
+  },
+  "fixture": {
+    "files": {
+      "/fixtures/workspace/callee.ts": "function callee() { return 1; }
+",
+      "/fixtures/workspace/caller.ts": "function caller() { return root(); }
+",
+      "/fixtures/workspace/root.ts": "function root() { return callee(); }
+",
+    },
+    "root": "root",
+    "workspaceRoot": "/fixtures/workspace",
+  },
+  "phases": [
+    "fixture",
+    "prepare",
+    "walk",
+    "result",
+  ],
+  "result": {
+    "incoming": {
+      "boundaries": [],
+      "direction": "incoming",
+      "directionBit": 1,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "file:///fixtures/workspace/caller.ts|1:0|caller",
+          "to": "file:///fixtures/workspace/root.ts|4:0|root",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "file:///fixtures/workspace/caller.ts|1:0|caller",
+          "name": "caller",
+          "path": "/fixtures/workspace/caller.ts",
+          "ranges": {
+            "declaration": {
+              "end": 4,
+              "start": 2,
+            },
+            "selection": {
+              "end": 2,
+              "start": 2,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "incoming",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+    "outgoing": {
+      "boundaries": [],
+      "direction": "outgoing",
+      "directionBit": 2,
+      "edges": [
+        {
+          "direction": 2,
+          "from": "file:///fixtures/workspace/root.ts|4:0|root",
+          "to": "file:///fixtures/workspace/callee.ts|8:0|callee",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 0,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/root.ts|4:0|root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 7,
+              "start": 5,
+            },
+            "selection": {
+              "end": 5,
+              "start": 5,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "file:///fixtures/workspace/callee.ts|8:0|callee",
+          "name": "callee",
+          "path": "/fixtures/workspace/callee.ts",
+          "ranges": {
+            "declaration": {
+              "end": 11,
+              "start": 9,
+            },
+            "selection": {
+              "end": 9,
+              "start": 9,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "root": {
+        "depth": 0,
+        "direction": "outgoing",
+        "key": "file:///fixtures/workspace/root.ts|4:0|root",
+        "name": "root",
+        "path": "/fixtures/workspace/root.ts",
+        "ranges": {
+          "declaration": {
+            "end": 7,
+            "start": 5,
+          },
+          "selection": {
+            "end": 5,
+            "start": 5,
+          },
+        },
+        "status": "included",
+      },
+      "truncated": false,
+    },
+  },
+}
+`;
