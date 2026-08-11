@@ -1,9 +1,20 @@
 import type { BranchResult, Edge } from "./transitive-calls.fabric";
 
 export type BranchGraph = BranchResult;
+export type BothBranchGraph = {
+	incoming: BranchGraph;
+	outgoing: BranchGraph;
+};
 export type DistinctBranch = Omit<BranchResult, "root">;
+export type JoinedBranch = Omit<
+	DistinctBranch,
+	"direction" | "directionBit"
+> & {
+	direction: "both";
+	directionBit: 3;
+};
 
-export const distinctBranches = (graph: BranchGraph): DistinctBranch[] => {
+const directionalBranches = (graph: BranchGraph): DistinctBranch[] => {
 	const nodesByKey = new Map(graph.nodes.map((node) => [node.key, node]));
 	const branches: DistinctBranch[] = [];
 	const outgoing = graph.direction === "outgoing";
@@ -48,4 +59,36 @@ export const distinctBranches = (graph: BranchGraph): DistinctBranch[] => {
 
 	visit([graph.root.key], [], graph.root.key);
 	return branches;
+};
+
+const terminalBranches = (graph: BranchGraph): DistinctBranch[] => {
+	const outgoing = graph.direction === "outgoing";
+	const expandable = new Set(
+		graph.edges
+			.filter((edge) => edge.direction === graph.directionBit)
+			.map((edge) => (outgoing ? edge.from : edge.to)),
+	);
+	return directionalBranches(graph).filter((branch) => {
+		const terminal = outgoing ? branch.nodes.at(-1) : branch.nodes[0];
+		return terminal !== undefined && !expandable.has(terminal.key);
+	});
+};
+
+export const distinctBranches = (
+	graph: BranchGraph | BothBranchGraph,
+): Array<DistinctBranch | JoinedBranch> => {
+	if ("nodes" in graph) return directionalBranches(graph);
+
+	const incoming = terminalBranches(graph.incoming);
+	const outgoing = terminalBranches(graph.outgoing);
+	return incoming.flatMap((incomingBranch) =>
+		outgoing.map((outgoingBranch) => ({
+			direction: "both" as const,
+			directionBit: 3 as const,
+			nodes: [...incomingBranch.nodes, ...outgoingBranch.nodes.slice(1)],
+			edges: [...incomingBranch.edges, ...outgoingBranch.edges],
+			boundaries: [...incomingBranch.boundaries, ...outgoingBranch.boundaries],
+			truncated: incomingBranch.truncated || outgoingBranch.truncated,
+		})),
+	);
 };

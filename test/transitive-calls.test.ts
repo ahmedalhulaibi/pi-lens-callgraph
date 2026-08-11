@@ -342,4 +342,57 @@ describe("distinct directional branches", () => {
 			branches: distinctBranches(input),
 		}).toMatchSnapshot();
 	});
+
+	it.each([
+		{
+			label:
+				"deep 2x2 leaf Cartesian product; catches intermediate-prefix joins, zipped branches, duplicate roots, and lost directional provenance",
+			incoming: {
+				root: node("root", 0, "incoming"),
+				direction: "incoming" as const,
+				directionBit: 1 as const,
+				nodes: [
+					node("root", 0, "incoming"),
+					node("parent-a", 1, "incoming"),
+					node("parent-b", 1, "incoming"),
+					node("caller-a", 2, "incoming"),
+					node("caller-b", 2, "incoming", "filtered"),
+				],
+				edges: [
+					{ from: "caller-a", to: "parent-a", direction: 1 as const },
+					{ from: "parent-a", to: "root", direction: 1 as const },
+					{ from: "caller-b", to: "parent-b", direction: 1 as const },
+					{ from: "parent-b", to: "root", direction: 1 as const },
+				],
+				boundaries: [],
+				truncated: false,
+			},
+			outgoing: {
+				root: node("root", 0, "outgoing"),
+				direction: "outgoing" as const,
+				directionBit: 2 as const,
+				nodes: [
+					node("root", 0, "outgoing"),
+					node("child-a", 1, "outgoing"),
+					node("child-b", 1, "outgoing"),
+					node("callee-a", 2, "outgoing"),
+					node("callee-b", 2, "outgoing", "filtered"),
+				],
+				edges: [
+					{ from: "root", to: "child-a", direction: 2 as const },
+					{ from: "child-a", to: "callee-a", direction: 2 as const },
+					{ from: "root", to: "child-b", direction: 2 as const },
+					{ from: "child-b", to: "callee-b", direction: 2 as const },
+				],
+				boundaries: [],
+				truncated: true,
+			},
+		},
+	] as const)("$label", async ({ label, incoming, outgoing }) => {
+		const { distinctBranches } = await import("../scripts/branches.fabric");
+		expect({
+			label,
+			branches: distinctBranches({ incoming, outgoing }),
+		}).toMatchSnapshot();
+	});
 });

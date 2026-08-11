@@ -581,6 +581,510 @@ exports[`direction outgoing > snapshots the complete directional contract and de
 }
 `;
 
+exports[`distinct directional branches > 'deep 2x2 leaf Cartesian product; catc…' 1`] = `
+{
+  "branches": [
+    {
+      "boundaries": [],
+      "direction": "both",
+      "directionBit": 3,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "caller-a",
+          "to": "parent-a",
+        },
+        {
+          "direction": 1,
+          "from": "parent-a",
+          "to": "root",
+        },
+        {
+          "direction": 2,
+          "from": "root",
+          "to": "child-a",
+        },
+        {
+          "direction": 2,
+          "from": "child-a",
+          "to": "callee-a",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 2,
+          "direction": "incoming",
+          "key": "caller-a",
+          "name": "caller-a",
+          "path": "/fixtures/workspace/caller-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "parent-a",
+          "name": "parent-a",
+          "path": "/fixtures/workspace/parent-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "child-a",
+          "name": "child-a",
+          "path": "/fixtures/workspace/child-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "callee-a",
+          "name": "callee-a",
+          "path": "/fixtures/workspace/callee-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "truncated": true,
+    },
+    {
+      "boundaries": [],
+      "direction": "both",
+      "directionBit": 3,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "caller-a",
+          "to": "parent-a",
+        },
+        {
+          "direction": 1,
+          "from": "parent-a",
+          "to": "root",
+        },
+        {
+          "direction": 2,
+          "from": "root",
+          "to": "child-b",
+        },
+        {
+          "direction": 2,
+          "from": "child-b",
+          "to": "callee-b",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 2,
+          "direction": "incoming",
+          "key": "caller-a",
+          "name": "caller-a",
+          "path": "/fixtures/workspace/caller-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "parent-a",
+          "name": "parent-a",
+          "path": "/fixtures/workspace/parent-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "child-b",
+          "name": "child-b",
+          "path": "/fixtures/workspace/child-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "filteredBy": [
+            "generated",
+            "vendor",
+          ],
+          "key": "callee-b",
+          "name": "callee-b",
+          "path": "/fixtures/workspace/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "filtered",
+        },
+      ],
+      "truncated": true,
+    },
+    {
+      "boundaries": [],
+      "direction": "both",
+      "directionBit": 3,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "caller-b",
+          "to": "parent-b",
+        },
+        {
+          "direction": 1,
+          "from": "parent-b",
+          "to": "root",
+        },
+        {
+          "direction": 2,
+          "from": "root",
+          "to": "child-a",
+        },
+        {
+          "direction": 2,
+          "from": "child-a",
+          "to": "callee-a",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 2,
+          "direction": "incoming",
+          "filteredBy": [
+            "generated",
+            "vendor",
+          ],
+          "key": "caller-b",
+          "name": "caller-b",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "filtered",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "parent-b",
+          "name": "parent-b",
+          "path": "/fixtures/workspace/parent-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "child-a",
+          "name": "child-a",
+          "path": "/fixtures/workspace/child-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "key": "callee-a",
+          "name": "callee-a",
+          "path": "/fixtures/workspace/callee-a.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "included",
+        },
+      ],
+      "truncated": true,
+    },
+    {
+      "boundaries": [],
+      "direction": "both",
+      "directionBit": 3,
+      "edges": [
+        {
+          "direction": 1,
+          "from": "caller-b",
+          "to": "parent-b",
+        },
+        {
+          "direction": 1,
+          "from": "parent-b",
+          "to": "root",
+        },
+        {
+          "direction": 2,
+          "from": "root",
+          "to": "child-b",
+        },
+        {
+          "direction": 2,
+          "from": "child-b",
+          "to": "callee-b",
+        },
+      ],
+      "nodes": [
+        {
+          "depth": 2,
+          "direction": "incoming",
+          "filteredBy": [
+            "generated",
+            "vendor",
+          ],
+          "key": "caller-b",
+          "name": "caller-b",
+          "path": "/fixtures/workspace/caller-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "filtered",
+        },
+        {
+          "depth": 1,
+          "direction": "incoming",
+          "key": "parent-b",
+          "name": "parent-b",
+          "path": "/fixtures/workspace/parent-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 0,
+          "direction": "incoming",
+          "key": "root",
+          "name": "root",
+          "path": "/fixtures/workspace/root.ts",
+          "ranges": {
+            "declaration": {
+              "end": 3,
+              "start": 1,
+            },
+            "selection": {
+              "end": 1,
+              "start": 1,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 1,
+          "direction": "outgoing",
+          "key": "child-b",
+          "name": "child-b",
+          "path": "/fixtures/workspace/child-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 13,
+              "start": 11,
+            },
+            "selection": {
+              "end": 11,
+              "start": 11,
+            },
+          },
+          "status": "included",
+        },
+        {
+          "depth": 2,
+          "direction": "outgoing",
+          "filteredBy": [
+            "generated",
+            "vendor",
+          ],
+          "key": "callee-b",
+          "name": "callee-b",
+          "path": "/fixtures/workspace/callee-b.ts",
+          "ranges": {
+            "declaration": {
+              "end": 23,
+              "start": 21,
+            },
+            "selection": {
+              "end": 21,
+              "start": 21,
+            },
+          },
+          "status": "filtered",
+        },
+      ],
+      "truncated": true,
+    },
+  ],
+  "label": "deep 2x2 leaf Cartesian product; catches intermediate-prefix joins, zipped branches, duplicate roots, and lost directional provenance",
+}
+`;
+
 exports[`distinct directional branches > 'incoming leaf-to-root; catches induce…' 1`] = `
 {
   "branches": [
