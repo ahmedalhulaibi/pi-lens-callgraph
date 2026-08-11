@@ -182,6 +182,27 @@ it.each([
 	}).toMatchSnapshot();
 });
 
+it("treats an empty pi-lens call response as an empty traversal", async () => {
+	const lspNavigation = vi.fn<LspNavigation>(async (args) => {
+		if (args.operation === "prepareCallHierarchy")
+			return payload([clone(fixture.root)]);
+		return { text: JSON.stringify({ status: "empty", resultCount: 0 }) };
+	});
+	const result = await incomingCalls(
+		{ ...options, direction: 1 },
+		fixture.root,
+		{ lspNavigation },
+	);
+	expect(result).toMatchObject({
+		root: expect.objectContaining({ name: "root" }),
+		nodes: [expect.objectContaining({ name: "root", depth: 0 })],
+		edges: [],
+		boundaries: [],
+		truncated: false,
+	});
+	expect(lspNavigation).toHaveBeenCalledTimes(1);
+});
+
 it.each([
 	["incoming", incomingCalls, 1],
 	["outgoing", outgoingCalls, 2],

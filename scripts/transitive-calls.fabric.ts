@@ -99,7 +99,11 @@ export type LspNavigation = (
 ) => Promise<ToolResult>;
 export type TransitiveDependencies = { lspNavigation: LspNavigation };
 
-type LspPayload = { result: unknown[] };
+type LspPayload = {
+	result: unknown[];
+	status?: string;
+	resultCount?: number;
+};
 type CompiledPattern = { pattern: string; regex: RegExp };
 type QueueEntry = { item: CallHierarchyItem; depth: number };
 type CallHierarchyCall = {
@@ -174,18 +178,30 @@ const parseToolPayload = (result: ToolResult): LspPayload => {
 			cause,
 		);
 	}
-	if (
-		parsed === null ||
-		typeof parsed !== "object" ||
-		!("result" in parsed) ||
-		!Array.isArray((parsed as { result: unknown }).result)
-	)
+	if (parsed === null || typeof parsed !== "object")
 		throw failure(
 			"provider_response",
 			"Invalid pi-lens response: result must be an array",
 			parsed,
 		);
-	return parsed as LspPayload;
+	const payload = parsed as {
+		result?: unknown;
+		status?: unknown;
+		resultCount?: unknown;
+	};
+	if (
+		payload.status === "empty" &&
+		payload.resultCount === 0 &&
+		payload.result === undefined
+	)
+		return { result: [], status: "empty", resultCount: 0 };
+	if (!Array.isArray(payload.result))
+		throw failure(
+			"provider_response",
+			"Invalid pi-lens response: result must be an array",
+			parsed,
+		);
+	return payload as LspPayload;
 };
 
 const hierarchyItems = (payload: LspPayload): CallHierarchyItem[] =>
