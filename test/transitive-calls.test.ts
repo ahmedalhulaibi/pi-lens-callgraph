@@ -573,3 +573,116 @@ describe("distinct directional branches", () => {
 		expect({ branches, reads: read.mock.calls }).toMatchSnapshot();
 	});
 });
+describe("branch agent consumer", () => {
+	const branchNode = (
+		key: string,
+		depth: number,
+		direction: "incoming" | "outgoing",
+		filter?: "filtered",
+	) => ({
+		key,
+		name: key,
+		uri: `file:///fixtures/workspace/${key}.ts`,
+		path: `/fixtures/workspace/${key}.ts`,
+		ranges: {
+			declaration: { start: depth * 10 + 1, end: depth * 10 + 3 },
+			selection: { start: depth * 10 + 1, end: depth * 10 + 1 },
+		},
+		depth,
+		direction,
+		...(filter === undefined ? {} : { filter }),
+	});
+
+	it.each([
+		{
+			label:
+				"incoming evidence; catches shared mutable evidence, missing provenance, and more than one invocation per branch",
+			input: {
+				root: branchNode("root", 0, "incoming"),
+				direction: "incoming" as const,
+				directionBit: 1 as const,
+				nodes: [
+					branchNode("root", 0, "incoming"),
+					branchNode("caller-a", 1, "incoming", "filtered"),
+					branchNode("caller-b", 1, "incoming"),
+				],
+				edges: [
+					{ from: "caller-a", to: "root", direction: 1 as const },
+					{ from: "caller-b", to: "root", direction: 1 as const },
+				],
+				boundaries: [
+					{
+						from: "caller-a",
+						to: "outside",
+						direction: 1 as const,
+						target: "outside",
+						uri: "file:///fixtures/external/outside.ts",
+						reason: "outside_workspace" as const,
+					},
+				],
+				truncated: true,
+			},
+		},
+		{
+			label:
+				"outgoing evidence; catches direction reversal, eager model-backed execution, and dropped range metadata",
+			input: {
+				root: branchNode("root", 0, "outgoing"),
+				direction: "outgoing" as const,
+				directionBit: 2 as const,
+				nodes: [
+					branchNode("root", 0, "outgoing"),
+					branchNode("callee", 1, "outgoing"),
+				],
+				edges: [{ from: "root", to: "callee", direction: 2 as const }],
+				boundaries: [],
+				truncated: false,
+			},
+		},
+	] as const)("$label", async ({ label, input }) => {
+		const { consumeBranches } = await import("../scripts/branch-agents.fabric");
+		const reads: unknown[] = [];
+		const agentCalls: unknown[] = [];
+		const modelCalls: unknown[] = [];
+		const modelGateway = vi.fn(async (request: unknown) => {
+			modelCalls.push(structuredClone(request));
+			throw new Error("tests must not invoke the model gateway");
+		});
+		const globals = globalThis as unknown as {
+			agents?: { run: typeof modelGateway };
+		};
+		const previousAgents = globals.agents;
+		globals.agents = { run: modelGateway };
+		const read = vi.fn(async (range) => {
+			reads.push(structuredClone(range));
+			return { text: `fixture:${range.path}:${range.offset}:${range.limit}` };
+		});
+		const runAgent = vi.fn(async (request) => {
+			agentCalls.push({
+				request: structuredClone(request),
+				frozen: {
+					evidence: Object.isFrozen(request.evidence),
+					nodes: Object.isFrozen(request.evidence.nodes),
+				},
+			});
+			return { text: `fake analysis ${request.branchIndex}` };
+		});
+
+		let results: unknown;
+		try {
+			results = await Effect.runPromise(
+				consumeBranches(input, { read, runAgent }),
+			);
+		} finally {
+			if (previousAgents === undefined) delete globals.agents;
+			else globals.agents = previousAgents;
+		}
+		expect({
+			label,
+			results,
+			reads,
+			agentCalls,
+			modelCalls,
+		}).toMatchSnapshot();
+	});
+});

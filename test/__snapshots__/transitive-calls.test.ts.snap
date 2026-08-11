@@ -1,5 +1,480 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`branch agent consumer > 'incoming evidence; catches shared mut…' 1`] = `
+{
+  "agentCalls": [
+    {
+      "frozen": {
+        "evidence": true,
+        "nodes": true,
+      },
+      "request": {
+        "branchIndex": 0,
+        "contents": [
+          {
+            "text": "fixture:/fixtures/workspace/caller-a.ts:11:3",
+          },
+          {
+            "text": "fixture:/fixtures/workspace/root.ts:1:3",
+          },
+        ],
+        "evidence": {
+          "boundaries": [
+            {
+              "direction": 1,
+              "from": "caller-a",
+              "reason": "outside_workspace",
+              "target": "outside",
+              "to": "outside",
+              "uri": "file:///fixtures/external/outside.ts",
+            },
+          ],
+          "direction": "incoming",
+          "directionBit": 1,
+          "edges": [
+            {
+              "direction": 1,
+              "from": "caller-a",
+              "to": "root",
+            },
+          ],
+          "nodes": [
+            {
+              "depth": 1,
+              "direction": "incoming",
+              "filter": "filtered",
+              "key": "caller-a",
+              "name": "caller-a",
+              "path": "/fixtures/workspace/caller-a.ts",
+              "ranges": {
+                "declaration": {
+                  "end": 13,
+                  "start": 11,
+                },
+                "selection": {
+                  "end": 11,
+                  "start": 11,
+                },
+              },
+              "uri": "file:///fixtures/workspace/caller-a.ts",
+            },
+            {
+              "depth": 0,
+              "direction": "incoming",
+              "key": "root",
+              "name": "root",
+              "path": "/fixtures/workspace/root.ts",
+              "ranges": {
+                "declaration": {
+                  "end": 3,
+                  "start": 1,
+                },
+                "selection": {
+                  "end": 1,
+                  "start": 1,
+                },
+              },
+              "uri": "file:///fixtures/workspace/root.ts",
+            },
+          ],
+          "truncated": true,
+        },
+      },
+    },
+    {
+      "frozen": {
+        "evidence": true,
+        "nodes": true,
+      },
+      "request": {
+        "branchIndex": 1,
+        "contents": [
+          {
+            "text": "fixture:/fixtures/workspace/caller-b.ts:11:3",
+          },
+          {
+            "text": "fixture:/fixtures/workspace/root.ts:1:3",
+          },
+        ],
+        "evidence": {
+          "boundaries": [],
+          "direction": "incoming",
+          "directionBit": 1,
+          "edges": [
+            {
+              "direction": 1,
+              "from": "caller-b",
+              "to": "root",
+            },
+          ],
+          "nodes": [
+            {
+              "depth": 1,
+              "direction": "incoming",
+              "key": "caller-b",
+              "name": "caller-b",
+              "path": "/fixtures/workspace/caller-b.ts",
+              "ranges": {
+                "declaration": {
+                  "end": 13,
+                  "start": 11,
+                },
+                "selection": {
+                  "end": 11,
+                  "start": 11,
+                },
+              },
+              "uri": "file:///fixtures/workspace/caller-b.ts",
+            },
+            {
+              "depth": 0,
+              "direction": "incoming",
+              "key": "root",
+              "name": "root",
+              "path": "/fixtures/workspace/root.ts",
+              "ranges": {
+                "declaration": {
+                  "end": 3,
+                  "start": 1,
+                },
+                "selection": {
+                  "end": 1,
+                  "start": 1,
+                },
+              },
+              "uri": "file:///fixtures/workspace/root.ts",
+            },
+          ],
+          "truncated": true,
+        },
+      },
+    },
+  ],
+  "label": "incoming evidence; catches shared mutable evidence, missing provenance, and more than one invocation per branch",
+  "modelCalls": [],
+  "reads": [
+    {
+      "limit": 3,
+      "offset": 11,
+      "path": "/fixtures/workspace/caller-a.ts",
+    },
+    {
+      "limit": 3,
+      "offset": 11,
+      "path": "/fixtures/workspace/caller-b.ts",
+    },
+    {
+      "limit": 3,
+      "offset": 1,
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "limit": 3,
+      "offset": 1,
+      "path": "/fixtures/workspace/root.ts",
+    },
+  ],
+  "results": [
+    {
+      "analysis": {
+        "text": "fake analysis 0",
+      },
+      "branchIndex": 0,
+      "contents": [
+        {
+          "text": "fixture:/fixtures/workspace/caller-a.ts:11:3",
+        },
+        {
+          "text": "fixture:/fixtures/workspace/root.ts:1:3",
+        },
+      ],
+      "evidence": {
+        "boundaries": [
+          {
+            "direction": 1,
+            "from": "caller-a",
+            "reason": "outside_workspace",
+            "target": "outside",
+            "to": "outside",
+            "uri": "file:///fixtures/external/outside.ts",
+          },
+        ],
+        "direction": "incoming",
+        "directionBit": 1,
+        "edges": [
+          {
+            "direction": 1,
+            "from": "caller-a",
+            "to": "root",
+          },
+        ],
+        "nodes": [
+          {
+            "depth": 1,
+            "direction": "incoming",
+            "filter": "filtered",
+            "key": "caller-a",
+            "name": "caller-a",
+            "path": "/fixtures/workspace/caller-a.ts",
+            "ranges": {
+              "declaration": {
+                "end": 13,
+                "start": 11,
+              },
+              "selection": {
+                "end": 11,
+                "start": 11,
+              },
+            },
+            "uri": "file:///fixtures/workspace/caller-a.ts",
+          },
+          {
+            "depth": 0,
+            "direction": "incoming",
+            "key": "root",
+            "name": "root",
+            "path": "/fixtures/workspace/root.ts",
+            "ranges": {
+              "declaration": {
+                "end": 3,
+                "start": 1,
+              },
+              "selection": {
+                "end": 1,
+                "start": 1,
+              },
+            },
+            "uri": "file:///fixtures/workspace/root.ts",
+          },
+        ],
+        "truncated": true,
+      },
+    },
+    {
+      "analysis": {
+        "text": "fake analysis 1",
+      },
+      "branchIndex": 1,
+      "contents": [
+        {
+          "text": "fixture:/fixtures/workspace/caller-b.ts:11:3",
+        },
+        {
+          "text": "fixture:/fixtures/workspace/root.ts:1:3",
+        },
+      ],
+      "evidence": {
+        "boundaries": [],
+        "direction": "incoming",
+        "directionBit": 1,
+        "edges": [
+          {
+            "direction": 1,
+            "from": "caller-b",
+            "to": "root",
+          },
+        ],
+        "nodes": [
+          {
+            "depth": 1,
+            "direction": "incoming",
+            "key": "caller-b",
+            "name": "caller-b",
+            "path": "/fixtures/workspace/caller-b.ts",
+            "ranges": {
+              "declaration": {
+                "end": 13,
+                "start": 11,
+              },
+              "selection": {
+                "end": 11,
+                "start": 11,
+              },
+            },
+            "uri": "file:///fixtures/workspace/caller-b.ts",
+          },
+          {
+            "depth": 0,
+            "direction": "incoming",
+            "key": "root",
+            "name": "root",
+            "path": "/fixtures/workspace/root.ts",
+            "ranges": {
+              "declaration": {
+                "end": 3,
+                "start": 1,
+              },
+              "selection": {
+                "end": 1,
+                "start": 1,
+              },
+            },
+            "uri": "file:///fixtures/workspace/root.ts",
+          },
+        ],
+        "truncated": true,
+      },
+    },
+  ],
+}
+`;
+
+exports[`branch agent consumer > 'outgoing evidence; catches direction …' 1`] = `
+{
+  "agentCalls": [
+    {
+      "frozen": {
+        "evidence": true,
+        "nodes": true,
+      },
+      "request": {
+        "branchIndex": 0,
+        "contents": [
+          {
+            "text": "fixture:/fixtures/workspace/root.ts:1:3",
+          },
+          {
+            "text": "fixture:/fixtures/workspace/callee.ts:11:3",
+          },
+        ],
+        "evidence": {
+          "boundaries": [],
+          "direction": "outgoing",
+          "directionBit": 2,
+          "edges": [
+            {
+              "direction": 2,
+              "from": "root",
+              "to": "callee",
+            },
+          ],
+          "nodes": [
+            {
+              "depth": 0,
+              "direction": "outgoing",
+              "key": "root",
+              "name": "root",
+              "path": "/fixtures/workspace/root.ts",
+              "ranges": {
+                "declaration": {
+                  "end": 3,
+                  "start": 1,
+                },
+                "selection": {
+                  "end": 1,
+                  "start": 1,
+                },
+              },
+              "uri": "file:///fixtures/workspace/root.ts",
+            },
+            {
+              "depth": 1,
+              "direction": "outgoing",
+              "key": "callee",
+              "name": "callee",
+              "path": "/fixtures/workspace/callee.ts",
+              "ranges": {
+                "declaration": {
+                  "end": 13,
+                  "start": 11,
+                },
+                "selection": {
+                  "end": 11,
+                  "start": 11,
+                },
+              },
+              "uri": "file:///fixtures/workspace/callee.ts",
+            },
+          ],
+          "truncated": false,
+        },
+      },
+    },
+  ],
+  "label": "outgoing evidence; catches direction reversal, eager model-backed execution, and dropped range metadata",
+  "modelCalls": [],
+  "reads": [
+    {
+      "limit": 3,
+      "offset": 1,
+      "path": "/fixtures/workspace/root.ts",
+    },
+    {
+      "limit": 3,
+      "offset": 11,
+      "path": "/fixtures/workspace/callee.ts",
+    },
+  ],
+  "results": [
+    {
+      "analysis": {
+        "text": "fake analysis 0",
+      },
+      "branchIndex": 0,
+      "contents": [
+        {
+          "text": "fixture:/fixtures/workspace/root.ts:1:3",
+        },
+        {
+          "text": "fixture:/fixtures/workspace/callee.ts:11:3",
+        },
+      ],
+      "evidence": {
+        "boundaries": [],
+        "direction": "outgoing",
+        "directionBit": 2,
+        "edges": [
+          {
+            "direction": 2,
+            "from": "root",
+            "to": "callee",
+          },
+        ],
+        "nodes": [
+          {
+            "depth": 0,
+            "direction": "outgoing",
+            "key": "root",
+            "name": "root",
+            "path": "/fixtures/workspace/root.ts",
+            "ranges": {
+              "declaration": {
+                "end": 3,
+                "start": 1,
+              },
+              "selection": {
+                "end": 1,
+                "start": 1,
+              },
+            },
+            "uri": "file:///fixtures/workspace/root.ts",
+          },
+          {
+            "depth": 1,
+            "direction": "outgoing",
+            "key": "callee",
+            "name": "callee",
+            "path": "/fixtures/workspace/callee.ts",
+            "ranges": {
+              "declaration": {
+                "end": 13,
+                "start": 11,
+              },
+              "selection": {
+                "end": 11,
+                "start": 11,
+              },
+            },
+            "uri": "file:///fixtures/workspace/callee.ts",
+          },
+        ],
+        "truncated": false,
+      },
+    },
+  ],
+}
+`;
+
 exports[`direction both > snapshots the complete directional contract and dependency trace 1`] = `
 {
   "label": "both",
