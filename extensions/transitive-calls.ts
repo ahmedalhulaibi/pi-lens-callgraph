@@ -5,9 +5,13 @@ import {
 } from "../scripts/transitive-calls.fabric.ts";
 
 const FABRIC_PROVIDER_REGISTER_EVENT = "pi-fabric:provider:register:v1";
+const FABRIC_PROVIDER_DISCOVER_EVENT = "pi-fabric:provider:discover:v1";
 
 type ExtensionAPI = {
-	events: { emit(event: string, payload: unknown): void };
+	events: {
+		emit(event: string, payload: unknown): void;
+		on?(event: string, handler: (payload: unknown) => void): () => void;
+	};
 };
 
 type FabricActionDescriptor = {
@@ -105,6 +109,14 @@ const provider: FabricProvider = {
 };
 
 export default function registerCallgraphProvider(pi: ExtensionAPI): void {
+	pi.events.on?.(FABRIC_PROVIDER_DISCOVER_EVENT, (payload: unknown) => {
+		if (!payload || typeof payload !== "object" || !("register" in payload))
+			return;
+		const register = (payload as { register?: unknown }).register;
+		if (typeof register === "function") {
+			register(provider, { overwrite: true });
+		}
+	});
 	pi.events.emit(FABRIC_PROVIDER_REGISTER_EVENT, {
 		version: 1,
 		provider,
