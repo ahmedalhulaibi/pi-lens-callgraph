@@ -1,60 +1,113 @@
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { Type } from "typebox";
 import {
-	type LspNavigation,
+	type ToolResult,
 	type TransitiveOptions,
 	transitiveCalls,
 } from "../scripts/transitive-calls.fabric.ts";
 
-const parameters = Type.Object({
-	path: Type.String({ description: "Absolute path to the root source file" }),
-	line: Type.Integer({
-		minimum: 0,
-		description: "Zero-based source line for LSP preparation",
-	}),
-	symbol: Type.String({
-		description: "Function or method symbol at the source location",
-	}),
-	workspaceRoot: Type.String({ description: "Absolute workspace boundary" }),
-	direction: Type.Union([Type.Literal(1), Type.Literal(2), Type.Literal(3)], {
-		description: "1 incoming, 2 outgoing, 3 both",
-	}),
-	maxDepth: Type.Integer({ minimum: 0 }),
-	maxNodes: Type.Integer({ minimum: 1 }),
-	regexPatterns: Type.Optional(Type.Array(Type.String())),
-});
+const FABRIC_PROVIDER_REGISTER_EVENT = "pi-fabric:provider:register:v1";
 
-type CapturedExtensions = {
-	lsp_navigation?: LspNavigation;
+type ExtensionAPI = {
+	events: { emit(event: string, payload: unknown): void };
 };
 
-export default function registerTransitiveCalls(pi: ExtensionAPI): void {
-	pi.registerTool({
-		name: "transitive_calls",
-		label: "Transitive Calls",
-		description:
-			"Traverse incoming and/or outgoing calls for a symbol within a workspace boundary. Requires pi-lens extensions.lsp_navigation through Fabric.",
-		promptSnippet:
-			"Traverse bounded incoming and outgoing calls for a source symbol",
-		parameters,
-		async execute(_toolCallId, params) {
-			const captured = (
-				globalThis as typeof globalThis & {
-					extensions?: CapturedExtensions;
-				}
-			).extensions;
-			if (typeof captured?.lsp_navigation !== "function") {
-				throw new Error(
-					"transitive_calls requires Fabric's captured extensions.lsp_navigation capability from pi-lens",
-				);
-			}
-			const result = await transitiveCalls(params as TransitiveOptions, {
-				lspNavigation: captured.lsp_navigation,
-			});
-			return {
-				content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
-				details: result,
-			};
+type FabricActionDescriptor = {
+	name: string;
+	description: string;
+	risk: "read" | "write" | "execute" | "network" | "agent";
+	inputSchema: Record<string, unknown>;
+};
+
+type FabricInvocationContext = {
+	invokeCapturedTool?: (
+		name: string,
+		args: Record<string, unknown>,
+	) => Promise<unknown>;
+};
+
+type FabricProvider = {
+	name: string;
+	description: string;
+	list(): Promise<FabricActionDescriptor[]>;
+	describe(actionName: string): Promise<FabricActionDescriptor | undefined>;
+	invoke(
+		actionName: string,
+		args: Record<string, unknown>,
+		context: FabricInvocationContext,
+	): Promise<unknown>;
+};
+
+const action: FabricActionDescriptor = {
+	name: "transitive_calls",
+	description:
+		"Traverse incoming and/or outgoing calls for a symbol within a workspace boundary.",
+	risk: "read",
+	inputSchema: {
+		type: "object",
+		required: [
+			"path",
+			"line",
+			"symbol",
+			"workspaceRoot",
+			"direction",
+			"maxDepth",
+			"maxNodes",
+		],
+		properties: {
+			path: {
+				type: "string",
+				description: "Absolute path to the root source file",
+			},
+			line: {
+				type: "integer",
+				minimum: 0,
+				description: "Zero-based source line",
+			},
+			symbol: { type: "string", description: "Function or method symbol" },
+			workspaceRoot: {
+				type: "string",
+				description: "Absolute workspace boundary",
+			},
+			direction: {
+				type: "integer",
+				enum: [1, 2, 3],
+				description: "1 incoming, 2 outgoing, 3 both",
+			},
+			maxDepth: { type: "integer", minimum: 0 },
+			maxNodes: { type: "integer", minimum: 1 },
+			regexPatterns: { type: "array", items: { type: "string" } },
 		},
+		additionalProperties: false,
+	},
+};
+
+const provider: FabricProvider = {
+	name: "callgraph",
+	description: "Workspace-bounded transitive call traversal through pi-lens",
+	async list() {
+		return [action];
+	},
+	async describe(actionName) {
+		return actionName === action.name ? action : undefined;
+	},
+	async invoke(actionName, args, context) {
+		if (actionName !== action.name)
+			throw new Error(`Unknown callgraph action: ${actionName}`);
+		const invokeCapturedTool = context.invokeCapturedTool;
+		if (!invokeCapturedTool) {
+			throw new Error("callgraph requires Fabric's captured-tool bridge");
+		}
+		const lspNavigation = (
+			request: Record<string, unknown>,
+		): Promise<ToolResult> =>
+			invokeCapturedTool("lsp_navigation", request) as Promise<ToolResult>;
+		return transitiveCalls(args as TransitiveOptions, { lspNavigation });
+	},
+};
+
+export default function registerCallgraphProvider(pi: ExtensionAPI): void {
+	pi.events.emit(FABRIC_PROVIDER_REGISTER_EVENT, {
+		version: 1,
+		provider,
+		overwrite: true,
 	});
 }
