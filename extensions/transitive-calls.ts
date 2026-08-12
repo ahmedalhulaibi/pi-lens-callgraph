@@ -102,8 +102,15 @@ const provider: FabricProvider = {
 		}
 		const lspNavigation = (
 			request: Record<string, unknown>,
-		): Promise<ToolResult> =>
-			invokeCapturedTool("lsp_navigation", request) as Promise<ToolResult>;
+		): Promise<ToolResult> => {
+			const line = request.line;
+			const lspRequest =
+				typeof line === "number" ? { ...request, line: line + 1 } : request;
+			return invokeCapturedTool(
+				"lsp_navigation",
+				lspRequest,
+			) as Promise<ToolResult>;
+		};
 		return transitiveCalls(args as TransitiveOptions, { lspNavigation });
 	},
 };
